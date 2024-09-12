@@ -1,5 +1,5 @@
 import 'package:e_commerce/auth/register/cubit/register_state.dart';
-import 'package:e_commerce/data/model/api_manager.dart';
+import 'package:e_commerce/data/api_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

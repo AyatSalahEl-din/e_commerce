@@ -1,9 +1,0 @@
-{
-    "message": "success",
-    "user": {
-        "name": "Ahmed Abd Al-Muti",
-        "email": "ahmedmuti159@gmail.com",
-        "role": "user"
-    },
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZGJjMGMzYjRiMDI1MWQ4ZGEzNDA4NCIsIm5hbWUiOiJBaG1lZCBBYmQgQWwtTXV0aSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzI1Njc3NzYzLCJleHAiOjE3MzM0NTM3NjN9.VLPSZ7eTHDj3VNbJwF3Uuyk4re-YIGLJ0-NfcODLuLk"
-}
