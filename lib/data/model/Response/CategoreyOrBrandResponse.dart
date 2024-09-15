@@ -1,14 +1,14 @@
-class CategoreyResponse {
+class CategoreyOrBrandResponse {
   int? results;
   Metadata? metadata;
-  List<Data>? data;
+  List<CategoryOrBrand>? data;
   String? message;
   String? statusMsg;
 
-  CategoreyResponse(
+  CategoreyOrBrandResponse(
       {this.results, this.metadata, this.data, this.message, this.statusMsg});
 
-  CategoreyResponse.fromJson(Map<String, dynamic> json) {
+  CategoreyOrBrandResponse.fromJson(Map<String, dynamic> json) {
     results = json['results'];
     message = json['message'];
     statusMsg = json['statusMsg'];
@@ -16,9 +16,9 @@ class CategoreyResponse {
         ? new Metadata.fromJson(json['metadata'])
         : null;
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <CategoryOrBrand>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new CategoryOrBrand.fromJson(v));
       });
     }
   }
@@ -58,7 +58,7 @@ class Metadata {
   }
 }
 
-class Data {
+class CategoryOrBrand {
   String? sId;
   String? name;
   String? slug;
@@ -66,7 +66,7 @@ class Data {
   String? createdAt;
   String? updatedAt;
 
-  Data(
+  CategoryOrBrand(
       {this.sId,
       this.name,
       this.slug,
@@ -74,7 +74,7 @@ class Data {
       this.createdAt,
       this.updatedAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  CategoryOrBrand.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     slug = json['slug'];

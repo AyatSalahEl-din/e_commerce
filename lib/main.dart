@@ -1,9 +1,10 @@
+import 'package:e_commerce/ProductListTab/cubit/product_cubit.dart';
+import 'package:e_commerce/ProductListTab/productList.dart';
 import 'package:e_commerce/auth/login/login.dart';
 import 'package:e_commerce/auth/register/register.dart';
 import 'package:e_commerce/favourite.dart';
 import 'package:e_commerce/HomeScreen/home.dart';
 import 'package:e_commerce/my_bloc_observer.dart';
-import 'package:e_commerce/productList.dart';
 import 'package:e_commerce/profile.dart';
 import 'package:e_commerce/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
-  runApp(MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ProductCubit(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

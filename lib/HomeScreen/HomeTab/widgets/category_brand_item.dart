@@ -1,18 +1,21 @@
 import 'package:e_commerce/app_colors.dart';
+import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CategoryBrandItem extends StatelessWidget {
+  //todo : category or brand model
+  CategoryOrBrand categoryOrBrand;
+  CategoryBrandItem({required this.categoryOrBrand});
   @override
   Widget build(BuildContext context) {
-    //todo : category or brand model
     return Column(
       children: [
         Expanded(
           flex: 8,
           child: CircleAvatar(
-            backgroundImage: AssetImage('assets/images/women.png'),
+            backgroundImage: NetworkImage(categoryOrBrand.image ?? ''),
             radius: 50.r,
           ),
         ),
@@ -20,7 +23,7 @@ class CategoryBrandItem extends StatelessWidget {
         Expanded(
             flex: 2,
             child: Text(
-              "name",
+              categoryOrBrand.name ?? '',
               textWidthBasis: TextWidthBasis.longestLine,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(

@@ -5,7 +5,7 @@ import 'package:e_commerce/HomeScreen/HomeTab/widgets/announcements_section.dart
 import 'package:e_commerce/HomeScreen/HomeTab/widgets/categories_brands_widgets.dart';
 import 'package:e_commerce/HomeScreen/HomeTab/widgets/row_section_widget.dart';
 import 'package:e_commerce/data/api_manager.dart';
-import 'package:e_commerce/data/model/Response/CategoreyResponse.dart';
+import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +18,9 @@ class HomePageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeTabCubit, HomeTabStates>(
-        bloc: cubit,
+        bloc: cubit
+          ..getAllCategories()
+          ..getAllBrands(),
         builder: (context, state) {
           return SafeArea(
             // backgroundColor: AppColors.whiteColor,
@@ -87,13 +89,14 @@ class HomePageWidget extends StatelessWidget {
                       color: AppColors.primaryColor,),):
                   CategoriesBrandsWidget(),*/
                     //another way:
-                    state is HomeTabStates
-                        ? Text(cubit.categoriesList!.length.toString())
-                        : Center(
+
+                    state is HomeTabLoadingState
+                        ? Center(
                             child: CircularProgressIndicator(
                               color: AppColors.primaryColor,
                             ),
-                          ),
+                          )
+                        : CategoriesBrandsWidget(list: cubit.categoriesList!),
 
                     SizedBox(height: 24.h),
 
@@ -151,7 +154,14 @@ class HomePageWidget extends StatelessWidget {
 
                     RowSectionWidget(name: 'Brands'),
                     SizedBox(height: 24.h),
-                    CategoriesBrandsWidget(),
+
+                    state is HomeBrandsLoadingState
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.primaryColor,
+                            ),
+                          )
+                        : CategoriesBrandsWidget(list: cubit.brandsList!)
                   ],
                 ),
               ),

@@ -1,4 +1,4 @@
-import 'package:e_commerce/data/model/Response/CategoreyResponse.dart';
+import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
 
 abstract class HomeTabStates {}
 
@@ -12,6 +12,19 @@ class HomeTabErrorState extends HomeTabStates {
 }
 
 class HomeTabSuccessState extends HomeTabStates {
-  CategoreyResponse categoreyResponse;
+  CategoreyOrBrandResponse categoreyResponse;
   HomeTabSuccessState({required this.categoreyResponse});
+}
+
+//////////////////////////////////
+class HomeBrandsLoadingState extends HomeTabStates {}
+
+class HomeBrandsErrorState extends HomeTabStates {
+  String errorMessage;
+  HomeBrandsErrorState({required this.errorMessage});
+}
+
+class HomeBrandsSuccessState extends HomeTabStates {
+  CategoreyOrBrandResponse categoreyResponse;
+  HomeBrandsSuccessState({required this.categoreyResponse});
 }

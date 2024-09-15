@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:e_commerce/data/end_point.dart';
 import 'package:e_commerce/data/model/Requests/LoginRequest.dart';
-import 'package:e_commerce/data/model/Response/CategoreyResponse.dart';
+import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
 import 'package:e_commerce/data/model/Response/LoginResponse.dart';
+import 'package:e_commerce/data/model/Response/ProductResponse.dart';
 import 'package:e_commerce/data/model/Response/RegisterResponse.dart';
 import 'package:e_commerce/data/model/Requests/RegisterRequest.dart';
 import 'package:http/http.dart' as http;
@@ -59,14 +60,40 @@ class ApiManager {
     }
   }
 
-  static Future<CategoreyResponse> getAllCategories() async {
+  static Future<CategoreyOrBrandResponse> getAllCategories() async {
     Uri url = Uri.https(baseUrl, EndPoints.getAllCategories);
     http.get(url);
     try {
       var response = await http.get(url);
       var bodyString = response.body;
       var json = jsonDecode(bodyString);
-      return CategoreyResponse.fromJson(json);
+      return CategoreyOrBrandResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<CategoreyOrBrandResponse> getAllBrands() async {
+    Uri url = Uri.https(baseUrl, EndPoints.getAllBrands);
+    http.get(url);
+    try {
+      var response = await http.get(url);
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      return CategoreyOrBrandResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<ProductResponse> getAllProducts() async {
+    Uri url = Uri.https(baseUrl, EndPoints.getAllProducts);
+    http.get(url);
+    try {
+      var response = await http.get(url);
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      return ProductResponse.fromJson(json);
     } catch (e) {
       throw e;
     }

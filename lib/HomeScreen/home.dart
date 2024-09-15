@@ -4,7 +4,6 @@ import 'package:e_commerce/app_colors.dart';
 import 'package:e_commerce/auth/custom_text_form_field.dart';
 import 'package:e_commerce/favourite.dart';
 import 'package:e_commerce/HomeScreen/HomeTab/home_page.dart';
-import 'package:e_commerce/productList.dart';
 import 'package:e_commerce/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
