@@ -46,6 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               posActionName: 'Ok',
               title: 'Success',
             );
+            Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
           }
         },
         child: Scaffold(

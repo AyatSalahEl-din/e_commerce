@@ -53,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
             title: 'Success',
             posActionName: 'OK',
           );
+          Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
         }
       },
       child: Scaffold(
