@@ -1,3 +1,4 @@
+import 'package:e_commerce/ProductListTab/ProductDetails.dart';
 import 'package:e_commerce/ProductListTab/cubit/product_cubit.dart';
 import 'package:e_commerce/ProductListTab/cubit/product_states.dart';
 import 'package:e_commerce/ProductListTab/product_card.dart';
@@ -92,7 +93,11 @@ class ProductList extends StatelessWidget {
                                   splashColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                        ProductDetails.routeName,
+                                        arguments: cubit.productList![index]);
+                                  },
                                   child: ProductCard(
                                     product: cubit.productList![index],
                                   ));

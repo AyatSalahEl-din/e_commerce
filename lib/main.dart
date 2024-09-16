@@ -1,3 +1,4 @@
+import 'package:e_commerce/ProductListTab/ProductDetails.dart';
 import 'package:e_commerce/ProductListTab/cubit/product_cubit.dart';
 import 'package:e_commerce/ProductListTab/productList.dart';
 import 'package:e_commerce/auth/login/login.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
               RegisterScreen.routeName: (context) => RegisterScreen(),
               LoginScreen.routeName: (context) => LoginScreen(),
               ProductList.routeName: (context) => ProductList(),
+              ProductDetails.routeName: (context) => ProductDetails(),
               ProfileScreen.routeName: (context) => ProfileScreen(),
               FavouriteScreen.routeName: (context) => FavouriteScreen(),
             },
