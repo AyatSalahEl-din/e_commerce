@@ -1,13 +1,21 @@
 import 'dart:convert';
 
+import 'package:dartz/dartz.dart';
 import 'package:e_commerce/data/end_point.dart';
 import 'package:e_commerce/data/model/Requests/LoginRequest.dart';
+import 'package:e_commerce/data/model/Response/AddCartResponse.dart';
+import 'package:e_commerce/data/model/Response/AddToWishListResponse.dart';
 import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
+import 'package:e_commerce/data/model/Response/GetCartResponse.dart';
+import 'package:e_commerce/data/model/Response/GetWishListResponse.dart';
 import 'package:e_commerce/data/model/Response/LoginResponse.dart';
 import 'package:e_commerce/data/model/Response/ProductResponse.dart';
 import 'package:e_commerce/data/model/Response/RegisterResponse.dart';
 import 'package:e_commerce/data/model/Requests/RegisterRequest.dart';
+import 'package:e_commerce/data/model/failures.dart';
+import 'package:e_commerce/utils/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiManager {
   static const String baseUrl = 'ecommerce.routemisr.com';
@@ -54,12 +62,16 @@ class ApiManager {
       var response = await http.post(url, body: loginRequest.toJson());
       var bodyString = response.body;
       var json = jsonDecode(bodyString);
-      return LoginResponse.fromJson(json);
+      var loginResponse = LoginResponse.fromJson(json);
+      //el satr da lw m4 3awzeno kan momkn n7to fe login zat nafso
+      SharedPreferencesUtils.saveData(key: 'token', value: loginResponse.token);
+      return loginResponse;
     } catch (e) {
       throw e;
     }
   }
 
+//////////////////////////////////////////////////////////
   static Future<CategoreyOrBrandResponse> getAllCategories() async {
     Uri url = Uri.https(baseUrl, EndPoints.getAllCategories);
     http.get(url);
@@ -86,6 +98,7 @@ class ApiManager {
     }
   }
 
+////////////////////////////////////////////////////////////////
   static Future<ProductResponse> getAllProducts() async {
     Uri url = Uri.https(baseUrl, EndPoints.getAllProducts);
     http.get(url);
@@ -96,6 +109,166 @@ class ApiManager {
       return ProductResponse.fromJson(json);
     } catch (e) {
       throw e;
+    }
+  }
+
+///////////////////////////////////////////////////////////////
+  static Future<Either<Failures, AddCartResponse>> addToCart(
+      String productId) async {
+    Uri url = Uri.https(baseUrl, EndPoints.addToCart);
+    try {
+      var token = SharedPreferencesUtils.getData(key: 'token');
+      var response = await http.post(url,
+          body: {'productId': productId}, headers: {'token': token.toString()});
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      var addToCartResponse = AddCartResponse.fromJson(json);
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(addToCartResponse);
+      } else if (response.statusCode == 401) {
+        return Left(ServerError(errorMessage: addToCartResponse.message!));
+      } else {
+        return Left(ServerError(errorMessage: addToCartResponse.message!));
+      }
+    } catch (e) {
+      return Left(ServerError(errorMessage: e.toString()));
+    }
+  }
+
+  static Future<Either<Failures, GetCartResponse>> getCart() async {
+    Uri url = Uri.https(baseUrl, EndPoints.addToCart);
+    try {
+      var token = SharedPreferencesUtils.getData(key: 'token');
+      var response = await http.get(url, headers: {'token': token.toString()});
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      var getCartResponse = GetCartResponse.fromJson(json);
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(getCartResponse);
+      } else if (response.statusCode == 401) {
+        return Left(ServerError(errorMessage: getCartResponse.message!));
+      } else {
+        return Left(ServerError(errorMessage: getCartResponse.message!));
+      }
+    } catch (e) {
+      return Left(ServerError(errorMessage: e.toString()));
+    }
+  }
+
+  static Future<Either<Failures, GetCartResponse>> deleteItemInCart(
+      String productId) async {
+    Uri url = Uri.https(baseUrl, '${EndPoints.addToCart}/$productId');
+    try {
+      var token = SharedPreferencesUtils.getData(key: 'token');
+      var response =
+          await http.delete(url, headers: {'token': token.toString()});
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      var deleteItemInCart = GetCartResponse.fromJson(json);
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(deleteItemInCart);
+      } else if (response.statusCode == 401) {
+        return Left(ServerError(errorMessage: deleteItemInCart.message!));
+      } else {
+        return Left(ServerError(errorMessage: deleteItemInCart.message!));
+      }
+    } catch (e) {
+      return Left(ServerError(errorMessage: e.toString()));
+    }
+  }
+
+  static Future<Either<Failures, GetCartResponse>> updateCountInCart(
+      String productId, int count) async {
+    Uri url = Uri.https(baseUrl, '${EndPoints.addToCart}/$productId');
+    try {
+      var token = SharedPreferencesUtils.getData(key: 'token');
+      var response = await http.put(url,
+          headers: {'token': token.toString()}, body: {'count': '$count'});
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      var updateCountInCartResponse = GetCartResponse.fromJson(json);
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(updateCountInCartResponse);
+      } else if (response.statusCode == 401) {
+        return Left(
+            ServerError(errorMessage: updateCountInCartResponse.message!));
+      } else {
+        return Left(
+            ServerError(errorMessage: updateCountInCartResponse.message!));
+      }
+    } catch (e) {
+      return Left(ServerError(errorMessage: e.toString()));
+    }
+  }
+
+///////////////////////////////////////////////////////////////////////////
+  static Future<Either<Failures, GetWishlistResponse>> getWishList() async {
+    Uri url = Uri.https(baseUrl, EndPoints.addToWishList);
+    try {
+      var token = SharedPreferencesUtils.getData(key: 'token');
+      var response = await http.get(url, headers: {'token': token.toString()});
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      var getWishlistResponse = GetWishlistResponse.fromJson(json);
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(getWishlistResponse);
+      } else if (response.statusCode == 401) {
+        return Left(ServerError(errorMessage: getWishlistResponse.message!));
+      } else {
+        return Left(ServerError(errorMessage: getWishlistResponse.message!));
+      }
+    } catch (e) {
+      return Left(ServerError(errorMessage: e.toString()));
+    }
+  }
+
+  ////////addTowishhh
+  static Future<Either<Failures, AddToWishlistResponse>> addItemToWishList(
+      String productId) async {
+    Uri url = Uri.https(baseUrl, EndPoints.addToWishList);
+    try {
+      var token = SharedPreferencesUtils.getData(key: 'token');
+      var response = await http.post(url,
+          body: {'productId': productId}, headers: {'token': token.toString()});
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      var addToCartResponse = AddToWishlistResponse.fromJson(json);
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(addToCartResponse);
+      } else if (response.statusCode == 401) {
+        return Left(ServerError(errorMessage: addToCartResponse.message!));
+      } else {
+        return Left(ServerError(errorMessage: addToCartResponse.message!));
+      }
+    } catch (e) {
+      return Left(ServerError(errorMessage: e.toString()));
+    }
+  }
+
+  /////////delteeeee
+  static Future<Either<Failures, GetWishlistResponse>> deleteItemFromWishList(
+      String productId) async {
+    Uri url = Uri.https(baseUrl, '${EndPoints.addToWishList}/$productId');
+    try {
+      var token = SharedPreferencesUtils.getData(key: 'token');
+      var response =
+          await http.delete(url, headers: {'token': token.toString()});
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      var deleteItemFromWishlist = GetWishlistResponse.fromJson(json);
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(deleteItemFromWishlist);
+      } else if (response.statusCode == 401) {
+        return Left(ServerError(errorMessage: deleteItemFromWishlist.message!));
+      } else {
+        return Left(ServerError(errorMessage: deleteItemFromWishlist.message!));
+      }
+    } catch (e) {
+      return Left(ServerError(errorMessage: e.toString()));
     }
   }
 }

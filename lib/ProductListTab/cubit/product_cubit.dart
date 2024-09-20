@@ -8,6 +8,7 @@ class ProductCubit extends Cubit<ProductStates> {
 
   //todo : hold data - handle logic
   List<Product>? productList;
+  int numOfCartItem = 0;
 
   void getAllProducts() async {
     try {
@@ -22,5 +23,18 @@ class ProductCubit extends Cubit<ProductStates> {
     } catch (e) {
       emit(ProductErrorState(errorMessage: e.toString()));
     }
+  }
+
+  static ProductCubit get(context) => BlocProvider.of(context);
+
+  void addToCart(String productId) async {
+    emit(AddCartLoadingState());
+    var either = await ApiManager.addToCart(productId);
+    either.fold((error) => emit(AddCartErrorState(failures: error)),
+        (response) {
+      numOfCartItem = response.numOfCartItems!.toInt();
+      print("number of cart item :$numOfCartItem");
+      emit(AddCartSuccessState(productResponse: response));
+    });
   }
 }

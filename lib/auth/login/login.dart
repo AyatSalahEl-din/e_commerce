@@ -1,10 +1,11 @@
 import 'package:e_commerce/app_colors.dart';
-import 'package:e_commerce/auth/custom_text_form_field.dart';
+import 'package:e_commerce/utils/custom_text_form_field.dart';
 import 'package:e_commerce/auth/login/cubit/login_cubit.dart';
 import 'package:e_commerce/auth/login/cubit/login_states.dart';
 import 'package:e_commerce/auth/register/register.dart';
-import 'package:e_commerce/dialog_utils.dart';
+import 'package:e_commerce/utils/dialog_utils.dart';
 import 'package:e_commerce/HomeScreen/home.dart';
+import 'package:e_commerce/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -53,6 +54,9 @@ class _LoginScreenState extends State<LoginScreen> {
             title: 'Success',
             posActionName: 'OK',
           );
+          //todo : save token
+          SharedPreferencesUtils.saveData(
+              key: 'token', value: state.response.token);
           Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
         }
       },

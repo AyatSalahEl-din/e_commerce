@@ -1,8 +1,7 @@
 import 'package:e_commerce/HomeScreen/cubit/home_sceen_states.dart';
 import 'package:e_commerce/HomeScreen/cubit/home_screen_cubit.dart';
 import 'package:e_commerce/app_colors.dart';
-import 'package:e_commerce/auth/custom_text_form_field.dart';
-import 'package:e_commerce/favourite.dart';
+import 'package:e_commerce/utils/custom_text_form_field.dart';
 import 'package:e_commerce/HomeScreen/HomeTab/home_page.dart';
 import 'package:e_commerce/profile.dart';
 import 'package:flutter/material.dart';

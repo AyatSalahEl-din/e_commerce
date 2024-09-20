@@ -96,7 +96,18 @@ class HomePageWidget extends StatelessWidget {
                               color: AppColors.primaryColor,
                             ),
                           )
-                        : CategoriesBrandsWidget(list: cubit.categoriesList!),
+                        : state is HomeTabErrorState
+                            ? Center(
+                                child: Text(
+                                    textWidthBasis: TextWidthBasis.longestLine,
+                                    state.errorMessage,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.primaryColor,
+                                    )))
+                            : CategoriesBrandsWidget(
+                                list: cubit.categoriesList!),
 
                     SizedBox(height: 24.h),
 
@@ -161,7 +172,20 @@ class HomePageWidget extends StatelessWidget {
                               color: AppColors.primaryColor,
                             ),
                           )
-                        : CategoriesBrandsWidget(list: cubit.brandsList!)
+                        : state is HomeBrandsErrorState
+                            ? Center(
+                                child: Text(
+                                    textWidthBasis: TextWidthBasis.longestLine,
+                                    state.errorMessage,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.primaryColor,
+                                    )))
+                            : state is HomeBrandsSuccessState
+                                ? CategoriesBrandsWidget(
+                                    list: cubit.brandsList!)
+                                : const SizedBox.shrink()
                   ],
                 ),
               ),

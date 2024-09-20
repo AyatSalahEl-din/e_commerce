@@ -1,5 +1,7 @@
 import 'package:e_commerce/app_colors.dart';
-import 'package:e_commerce/auth/custom_text_form_field.dart';
+import 'package:e_commerce/auth/login/login.dart';
+import 'package:e_commerce/utils/custom_text_form_field.dart';
+import 'package:e_commerce/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,9 +22,29 @@ class ProfileScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20, top: 20),
-            child: Image.asset('assets/images/logoda.png'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20, top: 20),
+                child: Image.asset('assets/images/logoda.png'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 20, top: 20),
+                child: IconButton(
+                    onPressed: () {
+                      //remove token
+                      SharedPreferencesUtils.removeData(key: 'token');
+                      //back to login
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          LoginScreen.routeName, (route) => false);
+                    },
+                    icon: Icon(
+                      Icons.logout,
+                      color: AppColors.primaryColor,
+                    )),
+              )
+            ],
           ),
           SizedBox(height: 20),
           Padding(

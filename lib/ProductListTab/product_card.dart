@@ -1,13 +1,23 @@
+import 'package:e_commerce/Favourite/cubit/WishListCubit.dart';
+import 'package:e_commerce/ProductListTab/cubit/product_cubit.dart';
 import 'package:e_commerce/app_colors.dart';
 import 'package:e_commerce/data/model/Response/ProductResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   Product product;
-  bool isWishlisted = false;
+
   ProductCard({required this.product});
+
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
+  bool isWishlisted = false;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -21,7 +31,7 @@ class ProductCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15.r),
                 child: Image.network(
-                  product.imageCover ?? '',
+                  widget.product.imageCover ?? '',
                   height: 128.h,
                   width: 191.w,
                   fit: BoxFit.cover,
@@ -39,7 +49,13 @@ class ProductCard extends StatelessWidget {
                     icon: isWishlisted == true
                         ? const Icon(Icons.favorite_rounded)
                         : const Icon(Icons.favorite_border_rounded),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {});
+                      isWishlisted = !isWishlisted;
+                      //todo add to wishlist
+                      WishListCubit.get(context)
+                          .addToWishlist(widget.product.id ?? '');
+                    },
                   ),
                 ),
               ),
@@ -51,7 +67,7 @@ class ProductCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 8.w),
             child: Text(
-              product.title ?? "",
+              widget.product.title ?? "",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.poppins(
@@ -69,7 +85,7 @@ class ProductCard extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'EGP ${product.price}',
+                  'EGP ${widget.product.price}',
                   maxLines: 1,
                   style: GoogleFonts.poppins(
                     fontSize: 14.sp,
@@ -91,7 +107,7 @@ class ProductCard extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'Reviews ${product.ratingsAverage} ',
+                  'Reviews ${widget.product.ratingsAverage} ',
                   maxLines: 1,
                   style: GoogleFonts.poppins(
                     fontSize: 14.sp,
@@ -109,6 +125,8 @@ class ProductCard extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     //add to cart
+                    ProductCubit.get(context)
+                        .addToCart(widget.product.id ?? '');
                   },
                   splashColor: Colors.transparent,
                   child: Icon(

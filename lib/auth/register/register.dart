@@ -1,8 +1,8 @@
 import 'package:e_commerce/app_colors.dart';
-import 'package:e_commerce/auth/custom_text_form_field.dart';
+import 'package:e_commerce/utils/custom_text_form_field.dart';
 import 'package:e_commerce/auth/register/cubit/register_cubit.dart';
 import 'package:e_commerce/auth/register/cubit/register_state.dart';
-import 'package:e_commerce/dialog_utils.dart';
+import 'package:e_commerce/utils/dialog_utils.dart';
 import 'package:e_commerce/HomeScreen/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -3,6 +3,8 @@ import 'package:e_commerce/ProductListTab/cubit/product_cubit.dart';
 import 'package:e_commerce/ProductListTab/cubit/product_states.dart';
 import 'package:e_commerce/ProductListTab/product_card.dart';
 import 'package:e_commerce/app_colors.dart';
+import 'package:e_commerce/cart/cart_item.dart';
+import 'package:e_commerce/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 class ProductList extends StatelessWidget {
   static const String routeName = 'product_list';
   ProductCubit cubit = ProductCubit();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -59,11 +62,19 @@ class ProductList extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: 10),
-                      Icon(
-                        Icons.shopping_cart,
-                        color: AppColors.primaryColor,
-                        size: 30,
-                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(CartScreen.routeName);
+                        },
+                        child: Badge(
+                          label: Text(cubit.numOfCartItem.toString()),
+                          child: Icon(
+                            Icons.shopping_cart,
+                            size: 28.sp,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
