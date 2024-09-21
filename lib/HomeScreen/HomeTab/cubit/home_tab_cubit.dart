@@ -12,36 +12,24 @@ class HomeTabCubit extends Cubit<HomeTabStates> {
   List<CategoryOrBrand>? brandsList;
 
   void getAllCategories() async {
-    try {
-      emit(HomeTabLoadingState());
-      var response = await ApiManager.getAllCategories();
-      if (response.statusMsg == 'fail') {
-        emit(HomeTabErrorState(errorMessage: response.message!));
-      } else {
-        categoriesList = response.data ?? [];
-        if (brandsList != null) {
-          emit(HomeTabSuccessState(categoreyResponse: response));
-        }
-      }
-    } catch (e) {
-      emit(HomeTabErrorState(errorMessage: e.toString()));
+    emit(HomeTabLoadingState());
+    var response = await ApiManager.getAllCategories();
+    if (response.statusMsg == 'fail') {
+      emit(HomeTabErrorState(errorMessage: response.message!));
+      return;
     }
+    categoriesList = response.data!;
+    emit(HomeTabSuccessState(categoreyResponse: response));
   }
 
   void getAllBrands() async {
-    try {
-      emit(HomeBrandsLoadingState());
-      var response = await ApiManager.getAllCategories();
-      if (response.statusMsg == 'fail') {
-        emit(HomeBrandsErrorState(errorMessage: response.message!));
-      } else {
-        brandsList = response.data ?? [];
-        if (categoriesList != null) {
-          emit(HomeBrandsSuccessState(categoreyResponse: response));
-        }
-      }
-    } catch (e) {
-      emit(HomeBrandsErrorState(errorMessage: e.toString()));
+    emit(HomeBrandsLoadingState());
+    var response = await ApiManager.getAllBrands();
+    if (response.statusMsg == 'fail') {
+      emit(HomeBrandsErrorState(errorMessage: response.message!));
+      return;
     }
+    brandsList = response.data!;
+    emit(HomeBrandsSuccessState(categoreyResponse: response));
   }
 }

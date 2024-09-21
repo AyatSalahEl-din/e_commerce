@@ -1,5 +1,5 @@
 class CategoreyOrBrandResponse {
-  int? results;
+  num? results;
   Metadata? metadata;
   List<CategoryOrBrand>? data;
   String? message;
@@ -37,9 +37,9 @@ class CategoreyOrBrandResponse {
 }
 
 class Metadata {
-  int? currentPage;
-  int? numberOfPages;
-  int? limit;
+  num? currentPage;
+  num? numberOfPages;
+  num? limit;
 
   Metadata({this.currentPage, this.numberOfPages, this.limit});
 

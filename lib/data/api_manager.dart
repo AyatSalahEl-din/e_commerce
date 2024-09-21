@@ -74,28 +74,18 @@ class ApiManager {
 //////////////////////////////////////////////////////////
   static Future<CategoreyOrBrandResponse> getAllCategories() async {
     Uri url = Uri.https(baseUrl, EndPoints.getAllCategories);
-    http.get(url);
-    try {
-      var response = await http.get(url);
-      var bodyString = response.body;
-      var json = jsonDecode(bodyString);
-      return CategoreyOrBrandResponse.fromJson(json);
-    } catch (e) {
-      throw e;
-    }
+    var response = await http.get(url);
+    var bodyString = response.body;
+    var json = jsonDecode(bodyString);
+    return CategoreyOrBrandResponse.fromJson(json);
   }
 
   static Future<CategoreyOrBrandResponse> getAllBrands() async {
     Uri url = Uri.https(baseUrl, EndPoints.getAllBrands);
-    http.get(url);
-    try {
-      var response = await http.get(url);
-      var bodyString = response.body;
-      var json = jsonDecode(bodyString);
-      return CategoreyOrBrandResponse.fromJson(json);
-    } catch (e) {
-      throw e;
-    }
+    var response = await http.get(url);
+    var bodyString = response.body;
+    var json = jsonDecode(bodyString);
+    return CategoreyOrBrandResponse.fromJson(json);
   }
 
 ////////////////////////////////////////////////////////////////

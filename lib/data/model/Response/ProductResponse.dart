@@ -1,7 +1,7 @@
 import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
 
 class ProductResponse {
-  int? results;
+  num? results;
   Metadata? metadata;
   List<Product>? data;
   String? message;
@@ -40,10 +40,10 @@ class ProductResponse {
 }
 
 class Metadata {
-  int? currentPage;
-  int? numberOfPages;
-  int? limit;
-  int? nextPage;
+  num? currentPage;
+  num? numberOfPages;
+  num? limit;
+  num? nextPage;
 
   Metadata({this.currentPage, this.numberOfPages, this.limit, this.nextPage});
 
@@ -65,16 +65,16 @@ class Metadata {
 }
 
 class Product {
-  int? sold;
+  num? sold;
   List<String>? images;
   List<Subcategory>? subcategory;
-  int? ratingsQuantity;
+  num? ratingsQuantity;
   String? sId;
   String? title;
   String? slug;
   String? description;
-  int? quantity;
-  int? price;
+  num? quantity;
+  num? price;
   String? imageCover;
   CategoryOrBrand? category;
   CategoryOrBrand? brand;
@@ -82,7 +82,7 @@ class Product {
   String? createdAt;
   String? updatedAt;
   String? id;
-  int? priceAfterDiscount;
+  num? priceAfterDiscount;
 
   Product({
     this.sold,

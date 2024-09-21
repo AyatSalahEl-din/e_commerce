@@ -3,7 +3,7 @@ import 'package:e_commerce/data/model/Response/ProductResponse.dart';
 
 class GetCartResponse {
   String? status;
-  int? numOfCartItems;
+  num? numOfCartItems;
   String? cartId;
   GetDataCart? data;
   String? statusMsg;
@@ -44,8 +44,8 @@ class GetDataCart {
   List<GetProductCart>? products;
   String? createdAt;
   String? updatedAt;
-  int? iV;
-  int? totalCartPrice;
+  num? iV;
+  num? totalCartPrice;
 
   GetDataCart(
       {this.sId,
@@ -87,10 +87,10 @@ class GetDataCart {
 }
 
 class GetProductCart {
-  int? count;
+  num? count;
   String? sId;
   GetProduct? product;
-  int? price;
+  num? price;
 
   GetProductCart({this.count, this.sId, this.product, this.price});
 
@@ -119,7 +119,7 @@ class GetProduct {
   List<Subcategory>? subcategory;
   String? sId;
   String? title;
-  int? quantity;
+  num? quantity;
   String? imageCover;
   CategoryOrBrand? category;
   CategoryOrBrand? brand;

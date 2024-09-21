@@ -1,7 +1,7 @@
 class AddCartResponse {
   String? status;
   String? message;
-  int? numOfCartItems;
+  num? numOfCartItems;
   String? cartId;
   AddDataCart? data;
   String? statusMsg;
@@ -42,8 +42,8 @@ class AddDataCart {
   List<AddProduct>? products;
   String? createdAt;
   String? updatedAt;
-  int? iV;
-  int? totalCartPrice;
+  num? iV;
+  num? totalCartPrice;
 
   AddDataCart(
       {this.sId,
@@ -85,10 +85,10 @@ class AddDataCart {
 }
 
 class AddProduct {
-  int? count;
+  num? count;
   String? sId;
   String? product;
-  int? price;
+  num? price;
 
   AddProduct({this.count, this.sId, this.product, this.price});
 
