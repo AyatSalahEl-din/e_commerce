@@ -1,15 +1,14 @@
-import 'package:e_commerce/HomeScreen/HomeTab/cubit/home_tab_cubit.dart';
-import 'package:e_commerce/HomeScreen/HomeTab/cubit/home_tab_state.dart';
-import 'package:e_commerce/app_colors.dart';
 import 'package:e_commerce/HomeScreen/HomeTab/widgets/announcements_section.dart';
 import 'package:e_commerce/HomeScreen/HomeTab/widgets/categories_brands_widgets.dart';
 import 'package:e_commerce/HomeScreen/HomeTab/widgets/row_section_widget.dart';
-import 'package:e_commerce/data/api_manager.dart';
-import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../app_colors.dart';
+import 'cubit/home_tab_cubit.dart';
+import 'cubit/home_tab_state.dart';
 
 class HomePageWidget extends StatelessWidget {
   static const String routeName = 'home_page';

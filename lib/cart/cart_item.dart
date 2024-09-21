@@ -1,11 +1,11 @@
-import 'package:e_commerce/ProductListTab/cubit/product_cubit.dart';
-import 'package:e_commerce/app_colors.dart';
-import 'package:e_commerce/cart/cubit/cart_screen_cubit.dart';
-import 'package:e_commerce/data/model/Response/GetCartResponse.dart';
-import 'package:e_commerce/data/model/Response/ProductResponse.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../app_colors.dart';
+import '../data/model/Response/GetCartResponse.dart';
+import 'cubit/cart_screen_cubit.dart';
 
 class CartItem extends StatelessWidget {
   GetProductCart productCart;

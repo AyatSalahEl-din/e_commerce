@@ -1,6 +1,8 @@
-import 'package:e_commerce/data/model/Response/AddToWishListResponse.dart';
-import 'package:e_commerce/data/model/Response/GetWishListResponse.dart';
-import 'package:e_commerce/data/model/failures.dart';
+
+
+import '../../data/model/Response/AddToWishListResponse.dart';
+import '../../data/model/Response/GetWishListResponse.dart';
+import '../../data/model/failures.dart';
 
 abstract class WishListStates {}
 

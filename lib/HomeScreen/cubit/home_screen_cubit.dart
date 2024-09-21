@@ -1,10 +1,12 @@
-import 'package:e_commerce/Favourite/favourite_screen.dart';
-import 'package:e_commerce/HomeScreen/HomeTab/home_page.dart';
-import 'package:e_commerce/HomeScreen/cubit/home_sceen_states.dart';
-import 'package:e_commerce/ProductListTab/productList.dart';
-import 'package:e_commerce/profile.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../Favourite/favourite_screen.dart';
+import '../../ProductListTab/productList.dart';
+import '../../profile.dart';
+import '../HomeTab/home_page.dart';
+import 'home_sceen_states.dart';
 
 //m3ndho4 constructor ya5od mno parameter f hanady 3la super
 class HomeScreenCubit extends Cubit<HomeScreenStates> {

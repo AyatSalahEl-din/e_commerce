@@ -1,7 +1,8 @@
 import 'package:e_commerce/cart/cubit/cart_screen_states.dart';
-import 'package:e_commerce/data/api_manager.dart';
-import 'package:e_commerce/data/model/Response/GetCartResponse.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../data/api_manager.dart';
+import '../../data/model/Response/GetCartResponse.dart';
 
 class CartScreenCubit extends Cubit<CartStates> {
   CartScreenCubit() : super(CartInitialState());

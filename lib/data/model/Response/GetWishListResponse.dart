@@ -1,5 +1,6 @@
-import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
-import 'package:e_commerce/data/model/Response/ProductResponse.dart';
+
+import 'CategoreyOrBrandResponse.dart';
+import 'ProductResponse.dart';
 
 class GetWishlistResponse {
   GetWishlistResponse(

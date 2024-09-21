@@ -1,95 +1,49 @@
 import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
 
 class ProductResponse {
-  num? results;
-  Metadata? metadata;
-  List<Product>? data;
-  String? message;
-  String? statusMsg;
-
   ProductResponse(
       {this.results, this.metadata, this.data, this.message, this.statusMsg});
 
-  ProductResponse.fromJson(Map<String, dynamic> json) {
+  ProductResponse.fromJson(dynamic json) {
     results = json['results'];
-    message = json['message'];
     statusMsg = json['statusMsg'];
-
-    metadata = json['metadata'] != null
-        ? new Metadata.fromJson(json['metadata'])
-        : null;
+    message = json['message'];
+    metadata =
+        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['data'] != null) {
-      data = <Product>[];
+      data = [];
       json['data'].forEach((v) {
-        data!.add(new Product.fromJson(v));
+        data?.add(Product.fromJson(v));
       });
     }
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['results'] = this.results;
-    if (this.metadata != null) {
-      data['metadata'] = this.metadata!.toJson();
-    }
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Metadata {
-  num? currentPage;
-  num? numberOfPages;
-  num? limit;
-  num? nextPage;
-
-  Metadata({this.currentPage, this.numberOfPages, this.limit, this.nextPage});
-
-  Metadata.fromJson(Map<String, dynamic> json) {
-    currentPage = json['currentPage'];
-    numberOfPages = json['numberOfPages'];
-    limit = json['limit'];
-    nextPage = json['nextPage'];
-  }
+  num? results;
+  Metadata? metadata;
+  List<Product>? data;
+  String? statusMsg;
+  String? message;
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['currentPage'] = this.currentPage;
-    data['numberOfPages'] = this.numberOfPages;
-    data['limit'] = this.limit;
-    data['nextPage'] = this.nextPage;
-    return data;
+    final map = <String, dynamic>{};
+    map['results'] = results;
+    if (metadata != null) {
+      map['metadata'] = metadata?.toJson();
+    }
+    if (data != null) {
+      map['data'] = data?.map((v) => v.toJson()).toList();
+    }
+    return map;
   }
 }
 
 class Product {
-  num? sold;
-  List<String>? images;
-  List<Subcategory>? subcategory;
-  num? ratingsQuantity;
-  String? sId;
-  String? title;
-  String? slug;
-  String? description;
-  num? quantity;
-  num? price;
-  String? imageCover;
-  CategoryOrBrand? category;
-  CategoryOrBrand? brand;
-  double? ratingsAverage;
-  String? createdAt;
-  String? updatedAt;
-  String? id;
-  num? priceAfterDiscount;
-
   Product({
     this.sold,
     this.images,
     this.subcategory,
     this.ratingsQuantity,
-    this.sId,
+    this.id,
     this.title,
     this.slug,
     this.description,
@@ -101,21 +55,19 @@ class Product {
     this.ratingsAverage,
     this.createdAt,
     this.updatedAt,
-    this.id,
-    this.priceAfterDiscount,
   });
 
-  Product.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(dynamic json) {
     sold = json['sold'];
-    images = json['images'].cast<String>();
+    images = json['images'] != null ? json['images'].cast<String>() : [];
     if (json['subcategory'] != null) {
-      subcategory = <Subcategory>[];
+      subcategory = [];
       json['subcategory'].forEach((v) {
-        subcategory!.add(new Subcategory.fromJson(v));
+        subcategory?.add(Subcategory.fromJson(v));
       });
     }
     ratingsQuantity = json['ratingsQuantity'];
-    sId = json['_id'];
+    id = json['_id'];
     title = json['title'];
     slug = json['slug'];
     description = json['description'];
@@ -123,94 +75,118 @@ class Product {
     price = json['price'];
     imageCover = json['imageCover'];
     category = json['category'] != null
-        ? new CategoryOrBrand.fromJson(json['category'])
+        ? CategoryOrBrand.fromJson(json['category'])
         : null;
-    brand = json['brand'] != null
-        ? new CategoryOrBrand.fromJson(json['brand'])
-        : null;
+    brand =
+        json['brand'] != null ? CategoryOrBrand.fromJson(json['brand']) : null;
     ratingsAverage = json['ratingsAverage'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     id = json['id'];
-    priceAfterDiscount = json['priceAfterDiscount'];
   }
 
+  num? sold;
+  List<String>? images;
+  List<Subcategory>? subcategory;
+  num? ratingsQuantity;
+  String? id;
+  String? title;
+  String? slug;
+  String? description;
+  num? quantity;
+  num? price;
+  String? imageCover;
+  CategoryOrBrand? category;
+  CategoryOrBrand? brand;
+  num? ratingsAverage;
+  String? createdAt;
+  String? updatedAt;
+
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['sold'] = this.sold;
-    data['images'] = this.images;
-    if (this.subcategory != null) {
-      data['subcategory'] = this.subcategory!.map((v) => v.toJson()).toList();
+    final map = <String, dynamic>{};
+    map['sold'] = sold;
+    map['images'] = images;
+    if (subcategory != null) {
+      map['subcategory'] = subcategory?.map((v) => v.toJson()).toList();
     }
-    data['ratingsQuantity'] = this.ratingsQuantity;
-    data['_id'] = this.sId;
-    data['title'] = this.title;
-    data['slug'] = this.slug;
-    data['description'] = this.description;
-    data['quantity'] = this.quantity;
-    data['price'] = this.price;
-    data['imageCover'] = this.imageCover;
-    if (this.category != null) {
-      data['category'] = this.category!.toJson();
+    map['ratingsQuantity'] = ratingsQuantity;
+    map['_id'] = id;
+    map['title'] = title;
+    map['slug'] = slug;
+    map['description'] = description;
+    map['quantity'] = quantity;
+    map['price'] = price;
+    map['imageCover'] = imageCover;
+    if (category != null) {
+      map['category'] = category?.toJson();
     }
-    if (this.brand != null) {
-      data['brand'] = this.brand!.toJson();
+    if (brand != null) {
+      map['brand'] = brand?.toJson();
     }
-    data['ratingsAverage'] = this.ratingsAverage;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['id'] = this.id;
-    data['priceAfterDiscount'] = this.priceAfterDiscount;
-    return data;
+    map['ratingsAverage'] = ratingsAverage;
+    map['createdAt'] = createdAt;
+    map['updatedAt'] = updatedAt;
+    map['id'] = id;
+    return map;
   }
 }
 
 class Subcategory {
-  String? sId;
-  String? name;
-  String? slug;
-  String? category;
+  Subcategory({
+    this.id,
+    this.name,
+    this.slug,
+    this.category,
+  });
 
-  Subcategory({this.sId, this.name, this.slug, this.category});
-
-  Subcategory.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
+  Subcategory.fromJson(dynamic json) {
+    id = json['_id'];
     name = json['name'];
     slug = json['slug'];
     category = json['category'];
   }
 
+  String? id;
+  String? name;
+  String? slug;
+  String? category;
+
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['slug'] = this.slug;
-    data['category'] = this.category;
-    return data;
+    final map = <String, dynamic>{};
+    map['_id'] = id;
+    map['name'] = name;
+    map['slug'] = slug;
+    map['category'] = category;
+    return map;
   }
 }
 
-class Category {
-  String? sId;
-  String? name;
-  String? slug;
-  String? image;
+class Metadata {
+  Metadata({
+    this.currentPage,
+    this.numberOfPages,
+    this.limit,
+    this.nextPage,
+  });
 
-  Category({this.sId, this.name, this.slug, this.image});
-
-  Category.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-    slug = json['slug'];
-    image = json['image'];
+  Metadata.fromJson(dynamic json) {
+    currentPage = json['currentPage'];
+    numberOfPages = json['numberOfPages'];
+    limit = json['limit'];
+    nextPage = json['nextPage'];
   }
 
+  num? currentPage;
+  num? numberOfPages;
+  num? limit;
+  num? nextPage;
+
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['slug'] = this.slug;
-    data['image'] = this.image;
-    return data;
+    final map = <String, dynamic>{};
+    map['currentPage'] = currentPage;
+    map['numberOfPages'] = numberOfPages;
+    map['limit'] = limit;
+    map['nextPage'] = nextPage;
+    return map;
   }
 }

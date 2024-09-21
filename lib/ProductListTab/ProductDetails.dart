@@ -1,10 +1,12 @@
-import 'package:e_commerce/app_colors.dart';
-import 'package:e_commerce/data/model/Response/ProductResponse.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
+
+import '../app_colors.dart';
+import '../data/model/Response/ProductResponse.dart';
 
 class ProductDetails extends StatelessWidget {
   static const String routeName = 'product_deatils';

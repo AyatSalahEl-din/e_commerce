@@ -1,7 +1,9 @@
-import 'package:e_commerce/Favourite/cubit/WishListStates.dart';
-import 'package:e_commerce/data/api_manager.dart';
-import 'package:e_commerce/data/model/Response/GetWishListResponse.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../data/api_manager.dart';
+import '../../data/model/Response/GetWishListResponse.dart';
+import 'WishListStates.dart';
 
 class WishListCubit extends Cubit<WishListStates> {
   WishListCubit() : super(WishListInitialState());

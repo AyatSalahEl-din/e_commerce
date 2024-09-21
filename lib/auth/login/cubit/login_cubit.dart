@@ -1,7 +1,9 @@
-import 'package:e_commerce/auth/login/cubit/login_states.dart';
-import 'package:e_commerce/data/api_manager.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../data/api_manager.dart';
+import 'login_states.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginIntialState());

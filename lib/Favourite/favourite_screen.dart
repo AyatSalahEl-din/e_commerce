@@ -1,13 +1,13 @@
-import 'package:e_commerce/Favourite/cubit/WishListCubit.dart';
-import 'package:e_commerce/Favourite/cubit/WishListStates.dart';
-import 'package:e_commerce/Favourite/favourite_item.dart';
-import 'package:e_commerce/app_colors.dart';
-import 'package:e_commerce/cart/cart_screen.dart';
-import 'package:e_commerce/cart/cubit/cart_screen_states.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../app_colors.dart';
+import 'cubit/WishListCubit.dart';
+import 'cubit/WishListStates.dart';
+import 'favourite_item.dart';
 
 class FavouriteScreen extends StatelessWidget {
   static const String routeName = 'favourite_screen';

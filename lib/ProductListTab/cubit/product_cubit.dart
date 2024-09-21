@@ -1,7 +1,9 @@
-import 'package:e_commerce/ProductListTab/cubit/product_states.dart';
-import 'package:e_commerce/data/api_manager.dart';
-import 'package:e_commerce/data/model/Response/ProductResponse.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../data/api_manager.dart';
+import '../../data/model/Response/ProductResponse.dart';
+import 'product_states.dart';
 
 class ProductCubit extends Cubit<ProductStates> {
   ProductCubit() : super(ProductInitialState());

@@ -1,21 +1,22 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:e_commerce/data/end_point.dart';
-import 'package:e_commerce/data/model/Requests/LoginRequest.dart';
-import 'package:e_commerce/data/model/Response/AddCartResponse.dart';
-import 'package:e_commerce/data/model/Response/AddToWishListResponse.dart';
-import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
-import 'package:e_commerce/data/model/Response/GetCartResponse.dart';
-import 'package:e_commerce/data/model/Response/GetWishListResponse.dart';
-import 'package:e_commerce/data/model/Response/LoginResponse.dart';
-import 'package:e_commerce/data/model/Response/ProductResponse.dart';
-import 'package:e_commerce/data/model/Response/RegisterResponse.dart';
-import 'package:e_commerce/data/model/Requests/RegisterRequest.dart';
-import 'package:e_commerce/data/model/failures.dart';
-import 'package:e_commerce/utils/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/shared_preferences.dart';
+import 'end_point.dart';
+import 'model/Requests/LoginRequest.dart';
+import 'model/Requests/RegisterRequest.dart';
+import 'model/Response/AddCartResponse.dart';
+import 'model/Response/AddToWishListResponse.dart';
+import 'model/Response/CategoreyOrBrandResponse.dart';
+import 'model/Response/GetCartResponse.dart';
+import 'model/Response/GetWishListResponse.dart';
+import 'model/Response/LoginResponse.dart';
+import 'model/Response/ProductResponse.dart';
+import 'model/Response/RegisterResponse.dart';
+import 'model/failures.dart';
 
 class ApiManager {
   static const String baseUrl = 'ecommerce.routemisr.com';
@@ -74,24 +75,35 @@ class ApiManager {
 //////////////////////////////////////////////////////////
   static Future<CategoreyOrBrandResponse> getAllCategories() async {
     Uri url = Uri.https(baseUrl, EndPoints.getAllCategories);
-    var response = await http.get(url);
-    var bodyString = response.body;
-    var json = jsonDecode(bodyString);
-    return CategoreyOrBrandResponse.fromJson(json);
+    try
+    {
+      var response = await http.get(url);
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      return CategoreyOrBrandResponse.fromJson(json);
+    }catch(e)
+    {
+      throw e;
+    }
   }
 
   static Future<CategoreyOrBrandResponse> getAllBrands() async {
     Uri url = Uri.https(baseUrl, EndPoints.getAllBrands);
-    var response = await http.get(url);
-    var bodyString = response.body;
-    var json = jsonDecode(bodyString);
-    return CategoreyOrBrandResponse.fromJson(json);
+    try {
+      var response = await http.get(url);
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      return CategoreyOrBrandResponse.fromJson(json);
+    }catch(e)
+    {
+      throw e;
+    }
   }
 
 ////////////////////////////////////////////////////////////////
   static Future<ProductResponse> getAllProducts() async {
     Uri url = Uri.https(baseUrl, EndPoints.getAllProducts);
-    http.get(url);
+
     try {
       var response = await http.get(url);
       var bodyString = response.body;

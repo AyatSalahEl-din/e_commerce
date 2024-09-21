@@ -1,4 +1,5 @@
-import 'package:e_commerce/data/model/Response/LoginResponse.dart';
+
+import '../../../data/model/Response/LoginResponse.dart';
 
 abstract class LoginStates {}
 

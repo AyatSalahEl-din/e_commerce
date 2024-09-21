@@ -1,7 +1,8 @@
-import 'package:e_commerce/HomeScreen/HomeTab/widgets/category_brand_item.dart';
-import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../data/model/Response/CategoreyOrBrandResponse.dart';
+import 'category_brand_item.dart';
 
 class CategoriesBrandsWidget extends StatelessWidget {
   List<CategoryOrBrand> list;

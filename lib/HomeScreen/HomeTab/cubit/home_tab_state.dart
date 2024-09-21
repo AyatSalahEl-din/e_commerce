@@ -1,4 +1,5 @@
-import 'package:e_commerce/data/model/Response/CategoreyOrBrandResponse.dart';
+
+import '../../../data/model/Response/CategoreyOrBrandResponse.dart';
 
 abstract class HomeTabStates {}
 

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:e_commerce/auth/login/login.dart';
-import 'package:e_commerce/HomeScreen/home.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {

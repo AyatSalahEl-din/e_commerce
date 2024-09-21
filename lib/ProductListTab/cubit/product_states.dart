@@ -1,6 +1,8 @@
-import 'package:e_commerce/data/model/Response/AddCartResponse.dart';
-import 'package:e_commerce/data/model/Response/ProductResponse.dart';
-import 'package:e_commerce/data/model/failures.dart';
+
+
+import '../../data/model/Response/AddCartResponse.dart';
+import '../../data/model/Response/ProductResponse.dart';
+import '../../data/model/failures.dart';
 
 abstract class ProductStates {}
 

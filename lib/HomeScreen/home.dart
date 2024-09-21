@@ -1,13 +1,12 @@
-import 'package:e_commerce/HomeScreen/cubit/home_sceen_states.dart';
-import 'package:e_commerce/HomeScreen/cubit/home_screen_cubit.dart';
-import 'package:e_commerce/app_colors.dart';
-import 'package:e_commerce/utils/custom_text_form_field.dart';
-import 'package:e_commerce/HomeScreen/HomeTab/home_page.dart';
-import 'package:e_commerce/profile.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+
+import '../app_colors.dart';
+import 'cubit/home_sceen_states.dart';
+import 'cubit/home_screen_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = 'home_screen';

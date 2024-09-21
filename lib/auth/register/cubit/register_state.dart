@@ -1,5 +1,6 @@
 //polymorphism
-import 'package:e_commerce/data/model/Response/RegisterResponse.dart';
+
+import '../../../data/model/Response/RegisterResponse.dart';
 
 abstract class RegisterState {}
 

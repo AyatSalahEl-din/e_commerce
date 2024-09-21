@@ -1,5 +1,7 @@
-import 'package:e_commerce/data/model/Response/GetCartResponse.dart';
-import 'package:e_commerce/data/model/failures.dart';
+
+
+import '../../data/model/Response/GetCartResponse.dart';
+import '../../data/model/failures.dart';
 
 abstract class CartStates {}
 
